@@ -7,6 +7,16 @@
 
 👋 _Hey! Using React, Vue or Astro? Check my new project [MistCSS](https://github.com/typicode/mistcss) to write 50% less code._
 
+## 对比 typicode/json-server 的变更
+
+- [ ] 依然选用 express
+- [ ] 支持传入 bodyParser 配置
+- [ ] 支持导出 express
+- [ ] _noRemoveDependents
+- [ ] _noDataNext
+- [ ] _noDbRoute
+- [ ] sql sever 适配器
+
 ## Install
 
 ```shell
