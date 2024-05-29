@@ -16,8 +16,8 @@
   },
   "scripts": {
     "dev": "tsx watch src/bin.ts fixtures/db.json",
-    "build": "rm -rf lib && tsc",
-    "test": "node --import tsx/esm --test src/*.test.ts",
+    "build": "shx rm -rf lib && tsc",
+    "test": "glob -c \"node --import tsx/esm --test\" \"./src/*.test.ts\"",
     "lint": "eslint src --ext .ts --ignore-path .gitignore",
     "prepare": "husky",
     "prepublishOnly": "npm run build"
@@ -26,9 +26,9 @@
   "author": "typicode <typicode@gmail.com>",
   "license": "SEE LICENSE IN ./LICENSE",
   "repository": {
-		"type": "git",
-		"url": "git+https://github.com/typicode/json-server.git"
-	},
+    "type": "git",
+    "url": "git+https://github.com/typicode/json-server.git"
+  },
   "devDependencies": {
     "@sindresorhus/tsconfig": "^5.0.0",
     "@tailwindcss/typography": "^0.5.10",
@@ -36,7 +36,9 @@
     "@typicode/eslint-config": "^1.2.0",
     "concurrently": "^8.2.2",
     "get-port": "^7.0.0",
+    "glob": "^10.4.1",
     "husky": "^9.0.6",
+    "shx": "^0.3.4",
     "tempy": "^3.1.0",
     "tsx": "^4.7.0",
     "type-fest": "^4.10.1",
