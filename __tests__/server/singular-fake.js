@@ -1,5 +1,7 @@
 const assert = require('assert')
 const request = require('supertest')
+const { parseArgv } = require('../../src/server/utils')
+const cliArg = parseArgv(process.env.arg)
 const jsonServer = require('../../src/server')
 
 describe('Fake server', () => {
@@ -16,7 +18,7 @@ describe('Fake server', () => {
     }
 
     server = jsonServer.create()
-    router = jsonServer.router(db, { _isFake: true })
+    router = jsonServer.router(db, { _isFake: true, ...cliArg })
     server.use(jsonServer.defaults())
     server.use(router)
   })

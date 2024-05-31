@@ -89,7 +89,7 @@ describe('Server', () => {
     ]
 
     server = jsonServer.create()
-    router = jsonServer.router(db, cliArg)
+    router = jsonServer.router(db, { ...cliArg })
     server.use(jsonServer.defaults())
     server.use(jsonServer.rewriter(rewriterRules))
     server.use(router)

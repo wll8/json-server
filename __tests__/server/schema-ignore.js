@@ -1,4 +1,6 @@
 const request = require('supertest')
+const { parseArgv } = require('../../src/server/utils')
+const cliArg = parseArgv(process.env.arg)
 const jsonServer = require('../../src/server')
 
 describe('$schema-ignore', () => {
@@ -17,7 +19,7 @@ describe('$schema-ignore', () => {
     }
 
     server = jsonServer.create()
-    router = jsonServer.router(db)
+    router = jsonServer.router(db, { ...cliArg })
     server.use(jsonServer.defaults())
     server.use(router)
   })

@@ -2,6 +2,7 @@ const cp = require('child_process')
 test({ _noDataNext: true })
 test({ _noDbRoute: true })
 test({ _noRemoveDependents: true })
+test({ _preciseNeste: true })
 
 function test(obj) {
   const arg = Object.entries(obj).reduce((acc, [key, val]) => {

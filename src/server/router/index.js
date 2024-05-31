@@ -20,6 +20,7 @@ module.exports = (db, opts) => {
       _noRemoveDependents: false,
       _noDataNext: false,
       _noDbRoute: false,
+      _preciseNeste: false,
       bodyParser: undefined,
     },
     opts
@@ -65,7 +66,7 @@ module.exports = (db, opts) => {
     })
 
   // Handle /:parent/:parentId/:resource
-  router.use(nested(opts))
+  router.use(nested(opts, db))
 
   // Create routes
   db.forEach((value, key) => {

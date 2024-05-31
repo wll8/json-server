@@ -1,5 +1,7 @@
 const assert = require('assert')
 const request = require('supertest')
+const { parseArgv } = require('../../src/server/utils')
+const cliArg = parseArgv(process.env.arg)
 const jsonServer = require('../../src/server')
 
 describe('Fake server', () => {
@@ -24,7 +26,7 @@ describe('Fake server', () => {
     ]
 
     server = jsonServer.create()
-    router = jsonServer.router(db, { _isFake: true })
+    router = jsonServer.router(db, { _isFake: true, ...cliArg })
     server.use(jsonServer.defaults())
     server.use(router)
   })
@@ -35,6 +37,14 @@ describe('Fake server', () => {
         .get('/posts/1/comments')
         .expect('Content-Type', /json/)
         .expect(200, [db.comments[0], db.comments[1]]))
+  })
+
+  describe('GET /:parent/:parentId/:resource _preciseNeste', () => {
+    test('should respond with json and corresponding nested resources', () =>
+      request(server)
+        .get('/postsx/1/comments')
+        .expect('Content-Type', /json/)
+        .expect(...(cliArg._preciseNeste ? [404, {}] : [200, db.comments])))
   })
 
   describe('POST /:resource', () => {

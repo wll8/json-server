@@ -34,6 +34,14 @@ const {lib: { express }} = jsonServer
 ```
 
   
+### options._preciseNeste
+Optional exact table name matching when nesting routes
+
+- type: boolean
+- Defaults: false
+
+For example, when requesting `/postxx/xxx/comments`, when _preciseNeste is false, it will be processed as `/comments?postxxId=xxx`. When _preciseNeste is true, no processing will be done because postxx is not a table.
+  
 ### options._noRemoveDependents
 After deleting data, do not clean up data that are not related to each other
 
@@ -112,43 +120,46 @@ __Please help me build OSS__ 👉 [GitHub Sponsors](https://github.com/sponsors/
 
 <!-- toc -->
 
-- [Getting started](#getting-started)
-- [Routes](#routes)
-  * [Plural routes](#plural-routes)
-  * [Singular routes](#singular-routes)
-  * [Filter](#filter)
-  * [Paginate](#paginate)
-  * [Sort](#sort)
-  * [Slice](#slice)
-  * [Operators](#operators)
-  * [Full-text search](#full-text-search)
-  * [Relationships](#relationships)
-  * [Database](#database)
-  * [Homepage](#homepage)
-- [Extras](#extras)
-  * [Static file server](#static-file-server)
-  * [Alternative port](#alternative-port)
-  * [Access from anywhere](#access-from-anywhere)
-  * [Remote schema](#remote-schema)
-  * [Generate random data](#generate-random-data)
-  * [HTTPS](#https)
-  * [Add custom routes](#add-custom-routes)
-  * [Add middlewares](#add-middlewares)
-  * [CLI usage](#cli-usage)
-  * [Module](#module)
-    + [Simple example](#simple-example)
-    + [Custom routes example](#custom-routes-example)
-    + [Access control example](#access-control-example)
-    + [Custom output example](#custom-output-example)
-    + [Rewriter example](#rewriter-example)
-    + [Mounting JSON Server on another endpoint example](#mounting-json-server-on-another-endpoint-example)
-    + [API](#api)
-  * [Deployment](#deployment)
-- [Links](#links)
-  * [Video](#video)
-  * [Articles](#articles)
-  * [Third-party tools](#third-party-tools)
-- [License](#license)
+- [JSON Server ](#json-server-)
+  - [Sponsor](#sponsor)
+  - [Table of contents](#table-of-contents)
+  - [Getting started](#getting-started)
+  - [Routes](#routes)
+    - [Plural routes](#plural-routes)
+    - [Singular routes](#singular-routes)
+    - [Filter](#filter)
+    - [Paginate](#paginate)
+    - [Sort](#sort)
+    - [Slice](#slice)
+    - [Operators](#operators)
+    - [Full-text search](#full-text-search)
+    - [Relationships](#relationships)
+    - [Database](#database)
+    - [Homepage](#homepage)
+  - [Extras](#extras)
+    - [Static file server](#static-file-server)
+    - [Alternative port](#alternative-port)
+    - [Access from anywhere](#access-from-anywhere)
+    - [Remote schema](#remote-schema)
+    - [Generate random data](#generate-random-data)
+    - [HTTPS](#https)
+    - [Add custom routes](#add-custom-routes)
+    - [Add middlewares](#add-middlewares)
+    - [CLI usage](#cli-usage)
+    - [Module](#module)
+      - [Simple example](#simple-example)
+      - [Custom routes example](#custom-routes-example)
+      - [Access control example](#access-control-example)
+      - [Custom output example](#custom-output-example)
+      - [Rewriter example](#rewriter-example)
+      - [Mounting JSON Server on another endpoint example](#mounting-json-server-on-another-endpoint-example)
+      - [API](#api)
+    - [Deployment](#deployment)
+  - [Links](#links)
+    - [Video](#video)
+    - [Articles](#articles)
+    - [Third-party tools](#third-party-tools)
+  - [License](#license)
 
 <!-- tocstop -->
 

@@ -1,6 +1,8 @@
 const assert = require('assert')
 const _ = require('lodash')
 const request = require('supertest')
+const { parseArgv } = require('../../src/server/utils')
+const cliArg = parseArgv(process.env.arg)
 const jsonServer = require('../../src/server')
 
 describe('Server with custom foreign key', () => {
@@ -23,7 +25,7 @@ describe('Server with custom foreign key', () => {
     ]
 
     server = jsonServer.create()
-    router = jsonServer.router(db, { foreignKeySuffix: '_id' })
+    router = jsonServer.router(db, { foreignKeySuffix: '_id', ...cliArg })
     server.use(jsonServer.defaults())
     server.use(router)
   })
@@ -104,7 +106,7 @@ describe('Server with custom foreign key', () => {
     test('should respond with empty data, destroy resource and dependent resources', async () => {
       await request(server).del('/posts/1').expect({}).expect(200)
       assert.strictEqual(db.posts.length, 1)
-      assert.strictEqual(db.comments.length, 1)
+      assert.strictEqual(db.comments.length, cliArg._noRemoveDependents ? 3 : 1)
     })
   })
 })
